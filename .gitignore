@@ -17,14 +17,4 @@ Thumbs.db
 # Logs
 *.log
 
-# Static/generated images (optional)
-static/generated_images/
-
-# Ignore Flask instance folder (if used)
-instance/
-
-# Ignore database files (if used)
-*.db
-*.sqlite3
-
 
