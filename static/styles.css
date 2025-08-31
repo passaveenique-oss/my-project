@@ -1,0 +1,354 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1500px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0); 
+    align-items: center;
+    backdrop-filter: blur(10px); /* frosted glass */
+    -webkit-backdrop-filter: blur(15px); /* for\ Safari */
+    border-radius: 7px; /* large = softer look */
+    z-index: 1000;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.146);
+
+}
+.cherryPict{ 
+    width: 100px;
+    height: 70px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+.gallery{
+
+margin-right: 40px;
+}
+.sharepicttogallery{
+
+    margin-right: 900px;
+}
+.discord {
+
+    margin-right: 10px;
+}
+body{
+    background: #fcd9f0;
+    background: radial-gradient(circle,rgba(252, 217, 240, 1) 0%, rgb(210, 195, 240) 100%);
+}
+.allPages {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+
+}
+.firstpage{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    border: none;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    flex-direction: column;
+    border-color: #000000;
+    
+}
+.secondpage{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    border: none;
+    padding-top: 50px;
+    
+    align-content: center;
+}
+.thirdpage{
+    height: 100vh;
+    width: 100%;
+    border: none;
+}
+.introText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 700px;
+    height: 70px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(1px); /* frosted glass */
+    -webkit-backdrop-filter: blur(1px); /* for\ Safari */
+    border-radius: 7px; /* large = softer look */
+    z-index: 900;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+}
+.title {
+    color: white;
+    font-size: 50px;
+    font-weight: 600;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.146);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+@keyframes fadeInSlideUp {
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+.video_place {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 700px;
+    height: 400px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(1px); /* frosted glass */
+    -webkit-backdrop-filter: blur(1px); /* for\ Safari */
+    border-radius: 7px; /* large = softer look */
+    z-index:900;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;   
+}
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* makes the video fill the area without distortion */
+    
+}
+
+#Input {
+    margin-top: 12px;
+    width: 400px;
+    height: 200px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 px 6px rgba(0,0,0,0.1);
+    
+
+}
+.top-left-placeholder::placeholder {
+    text-align: left;
+    vertical-align: top; /* doesn't affect placeholder */
+    font-size: 27px;
+    color: #888;
+}
+.top{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+.input_space{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(1px); /* frosted glass */
+    -webkit-backdrop-filter: blur(1px); /* for\ Safari */
+    z-index: 900;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    margin-left: 40px;
+    align-items: center;
+    border: none;
+    
+}
+.output {
+    width: 400px;
+    height: 400px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(1px); /* frosted glass */
+    -webkit-backdrop-filter: blur(1px); /* for\ Safari */
+    z-index: 900;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.generate_button{
+    margin-top: 15px;  
+    padding: 12px 24px;
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.146);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.generate_button:hover {
+    background-color: #f0e3ef;
+    transform: scale(1.05); /* slightly zoom on hover */
+}
+
+.generate_button:active {
+    transform: scale(0.97); /* press effect */
+}
+.download_button {
+    padding-left: 100px;
+    padding-top: 40px;
+    margin-top: 17px;  
+    padding: 12px 24px;
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.146);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(162, 32, 172, 0.15);
+    transition: background-color 0.3s, transform 0.2s;
+}
+.bottom {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.grid-container {
+  display: grid; /* Enables CSS Grid layout */
+  grid-template-columns: repeat(4, 1fr); /* Creates 6 columns, each taking equal fractional space */
+  grid-template-rows: repeat(3, 1fr); /* Creates 4 rows, each taking equal fractional space */
+  gap: 10px; /* Adds a 10px gap between grid items */
+ 
+}
+
+
+.box {
+    border: none;
+    height: 300px;
+    width: 300px;
+    
+    border-radius: 12px;
+    
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(1px); /* frosted glass */
+    -webkit-backdrop-filter: blur(1px); /* for\ Safari */
+    z-index: 900;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Progress container */
+#progress-container {
+    width: 100%;
+    background-color: #f4bdea;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 20px;
+    margin-bottom: 15px;
+}
+
+/* Progress bar itself */
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #f987ea, #526fec);
+    transition: width 0.3s ease;
+}
+
+/* Image container */
+#result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* adjust to match your design */
+
+}
+
+.box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* or contain, fill, scale-down, none */
+        border-radius: 12px;
+}
+
+.ex_prompt{
+    display: grid;
+  border: 1px solid #ccc; /* Optional: for visualization */ 
+  padding-bottom: 20px; 
+}
+
+.typing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-size: 32px;
+  font-weight: 600;
+  font-family: 'Arial', sans-serif;
+}
+
+/* General typing style */
+.typing {
+  border-right: .15em solid rgb(216, 117, 194);
+  overflow: hidden;
+  white-space: nowrap;  /* Keep each line as one line */
+  width: 0ch;           /* start hidden */
+}
+
+/* Animate line by line */
+.line1 {
+  animation: typing1 3s steps(40, end) 0s forwards,
+             blink-caret .75s step-end infinite;
+}
+
+.line2 {
+  animation: typing2 3s steps(45, end) 3.5s forwards,
+             blink-caret .75s step-end infinite;
+}
+
+.line3 {
+  animation: typing3 3s steps(50, end) 7s forwards,
+             blink-caret .75s step-end infinite;
+}
+
+@keyframes typing1 {
+  from { width: 0ch; }
+  to { width: 40ch; } /* match characters in line1 */
+}
+
+@keyframes typing2 {
+  from { width: 0ch; }
+  to { width: 45ch; } /* match characters in line2 */
+}
+
+@keyframes typing3 {
+  from { width: 0ch; }
+  to { width: 50ch; } /* match characters in line3 */
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: orange; }
+}
+
+
+
+

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Glowing</title>
+    <!-- In your Jinja template -->
+
+
+{% endblock %}
+
+{% block body %}  
+
+<!--header-->
+<header class="header">
+    <div class="icon">
+        <img class="cherryPict" src="{{ url_for('static', filename='icon.png') }}" alt="My Image">
+    </div>
+    <a class="gallery" href="{{ url_for('gallery') }}">Gallery</a>
+    <div class="sharepicttogallery">Share</div>
+    <div class="discord">Discord</div>
+
+</header>
+
+<div class="allPages">
+    <!--Home page-->
+    <div class="firstpage">
+        <div class="introText">
+            <p class="title">Generate Your Glossy Arts</p>
+        </div>
+        <div class="video_place">
+            <video autoplay muted loop width="1000">
+                <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!--Prompt input and image output-->
+    <div class="secondpage">
+        <div class="top">
+            <div class="input_space">
+                <form action="{{ url_for('generate_image') }}" method="POST">
+                    <div class="prompt_input">
+                        <textarea name="prompt" id="Input" maxlength="300" placeholder="Create something magical" class="top-left-placeholder">{{ prompt or "" }}</textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="generate_button">Start creating for Free</button>
+                    </div>  
+                </form>
+            </div>
+
+            <div class="output">
+                <!-- Progress Bar (optional, static for now) -->
+                <div id="progress-container">
+                    <div id="progress-bar" style="width:100%; height:5px; background-color:#4caf50;"></div>
+                </div>
+
+                <!-- Image will appear here -->
+                {% if filepath %}
+                <div id="result-container">
+                    <img id="result-image" src="{{ filepath }}" alt="{{ prompt }}" style="display:block; max-width:100%; border-radius:12px;">
+                </div>
+                {% endif %}
+
+                {% if filepath %}
+                <a href="{{ url_for('home') }}">Generate another</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="bottom">
+            {% if filepath %}
+            <a href="{{ filepath }}" download>
+                <button class="download_button">Download Image for Free</button>
+            </a>
+            {% endif %}
+            <button class="download_button">Share to Gallery</button>
+        </div>
+    </div>
+
+    <!--examples-->
+
+    
+    <div class="typing-container">
+        <div class="typing line1">Ultra-detailed hyper-realistic fantasy fruit</div>
+        <div class="typing line2">Crystal cherries, translucent glowing glass cherries</div>
+        <div class="typing line3">Sparkling magical light, dreamy background</div>
+    </div>
+
+
+
+  <div class="grid-container">  
+
+        <div class="last_text">
+                    <p class="title">More Free images in Gallery</p>
+        </div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example1.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example2.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example3.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example4.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example5.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example6.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example7.webp') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example8.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example9.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example10.webp') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example11.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example12.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example13.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example14.png') }}" alt="My Image"></div>
+  <div class="box"><img class="ex1" src="{{ url_for('static', filename='example15.png') }}" alt="My Image"></div>
+</div>
+
+    
+</div>
+
+{% endblock %}
