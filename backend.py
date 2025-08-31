@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_FOLDER = os.path.join(BASE_DIR, "static", "generated_images")
 os.makedirs(IMAGE_FOLDER, exist_ok=True)
 
-AI_SERVER = "n1quek33n.uk"  # replace with your AI server IP
+AI_SERVER = "http://localhost:5000"  # replace with your AI server IP
 
 @app.route('/')
 def home():
