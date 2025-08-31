@@ -1,0 +1,31 @@
+# Virtual environment
+vir/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Static/generated images (optional)
+static/generated_images/
+
+# Ignore Flask instance folder (if used)
+instance/
+
+# Ignore database files (if used)
+*.db
+*.sqlite3
+
+nano .gitignore
+
