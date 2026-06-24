@@ -1,7 +1,9 @@
+
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import os, uuid, requests, base64
+import os, base64, requests
+from urllib.parse import quote
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
@@ -12,17 +14,13 @@ class TempData(db.Model):
     input = db.Column(db.String(400), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
     shared = db.Column(db.Boolean, default=False)
-    filepath = db.Column(db.String(255), nullable=True)
-    image_data = db.Column(db.LargeBinary, nullable=True)
+    # filepath / image_data columns removed — images are never persisted
 
 with app.app_context():
     db.create_all()
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_FOLDER = os.path.join(BASE_DIR, "static", "generated_images")
-os.makedirs(IMAGE_FOLDER, exist_ok=True)
-
-AI_SERVER = "https://n1quek33n.uk/"
+# Free, no-signup image generation API — good for experimenting
+POLLINATIONS_URL = "https://gen.pollinations.ai/image/"
 
 @app.route('/')
 def home():
@@ -34,33 +32,31 @@ def generate_image():
     if not prompt:
         return render_template("main.html", filepath=None, prompt="")
 
-    response = requests.post(f"{AI_SERVER}/generate", json={"prompt": prompt})
-    if response.status_code != 200:
+    image_url = f"{POLLINATIONS_URL}{quote(prompt)}?nologo=true"
+
+    try:
+        response = requests.get(image_url, timeout=60)
+        response.raise_for_status()
+    except requests.RequestException:
         return render_template("main.html", filepath=None, prompt=prompt, error="AI server error")
 
-    data = response.json()
-    image_b64 = data.get("image_base64")
-    image_bytes = base64.b64decode(image_b64)
+    # Encode directly to base64 and hand it to the template — nothing touches disk or the DB
+    image_b64 = base64.b64encode(response.content).decode("utf-8")
+    data_uri = f"data:image/jpeg;base64,{image_b64}"
 
-    filename = f"{uuid.uuid4().hex}.png"
-    filepath = os.path.join(IMAGE_FOLDER, filename)
-    with open(filepath, "wb") as f:
-        f.write(image_bytes)
-
-    web_path = f"/static/generated_images/{filename}"
-
-    temp = TempData(input=prompt, filepath=web_path, image_data=image_bytes)
+    # Optional: logs just the prompt text (no image), purely for your own curiosity.
+    # Delete these 3 lines if you want zero DB writes at all.
+    temp = TempData(input=prompt)
     db.session.add(temp)
     db.session.commit()
 
-    return render_template("main.html", filepath=web_path, prompt=prompt)
+    return render_template("main.html", filepath=data_uri, prompt=prompt)
 
 @app.route('/gallery')
 def gallery():
     items = TempData.query.filter_by(shared=True).all()
     return render_template("gallery.html", items=items)
 
-# Use Render's PORT env variable
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     app.run(host="0.0.0.0", port=port)
